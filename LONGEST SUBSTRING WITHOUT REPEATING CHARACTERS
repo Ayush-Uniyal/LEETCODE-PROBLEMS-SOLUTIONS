@@ -1,0 +1,27 @@
+Intuition:traverse the length ogf the string.put elements in map and check for repeated elements.
+Approach
+Approach: In this approach, we will make a map that will take care of counting the elements and maintaining the frequency of each and every element as a unity by taking the latest index of every element.
+
+Complexity
+Time complexity:
+Time Complexity: O( N )
+Space complexity:
+Space Complexity: O(N) where N represents the size of HashSet where we are storing our elements
+Code
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+      vector<int>mpp(256,-1);
+      int left=0,right=0;
+      int n=s.size();
+      int len=0;
+      while(right<n){
+          if(mpp[s[right]]!=-1)
+          left=max(left,mpp[s[right]]+1);
+          mpp[s[right]]=right;
+          len=max(len,right-left+1);
+          right++;
+      }
+      return len;
+    }
+};
